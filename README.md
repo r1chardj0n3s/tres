@@ -25,6 +25,7 @@ b_token = InjectionToken[Callable[[int, int], int]]()
 
 container.register(a_token, a)
 container.register(b_token, b)
+container.register(b_token, a)  # type error
 
 
 def c(f: Callable[[int], str]):
