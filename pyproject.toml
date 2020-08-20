@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "tres"
+version = "1.1"
+description = "Type resolver (dependency container) for Python"
+authors = ["Richard Jones <richard@mechanicalcat.net>"]
+homepage = "https://github.com/r1chardj0n3s/tres"
+readme = "README.md"
+packages = [
+    { include = "tres.py" }
+]
+include = ["README.md", "LICENSE"]

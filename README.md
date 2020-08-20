@@ -3,7 +3,7 @@ Type resolver (dependency container) for Python
 
 It provides a dependency container for you to use in typed dependency resolution.
 
-That's all.
+That's all. Very type resolution. Much wow.
 
 Inspired by the dependency container in [tsyringe](https://www.npmjs.com/package/tsyringe), but more Pythonic.
 
