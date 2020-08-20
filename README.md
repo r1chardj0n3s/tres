@@ -1,5 +1,5 @@
 # tres
-Type resolver (dependency container) for Python
+Typed resolver (dependency container) for Python
 
 It provides a dependency container for you to use in typed dependency resolution.
 
