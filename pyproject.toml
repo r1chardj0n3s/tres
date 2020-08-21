@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tres"
-version = "1.2"
+version = "1.3"
 description = "Typed resolver (dependency container) for Python"
 authors = ["Richard Jones <richard@mechanicalcat.net>"]
 homepage = "https://github.com/r1chardj0n3s/tres"
