@@ -7,14 +7,17 @@ class InjectionToken(Generic[T]):
     ...
 
 
-class DependencyContainer(dict):
+class DependencyContainer(Generic[T]):
+    def __init__(self):
+        self.__container = {}
+
     def register(self, token: InjectionToken[T], value: T):
-        if token in self:
+        if token in self.__container:
             raise KeyError(f"token {token} already registered")
-        self[token] = value
+        self.__container[token] = value
 
     def __getitem__(self, token: InjectionToken[T]) -> T:
-        return super().__getitem__(token)
+        return self.__container[token]
 
 
 container = DependencyContainer()
