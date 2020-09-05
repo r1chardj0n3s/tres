@@ -45,17 +45,17 @@ c(container[b_token])  # type error
 from typing import Protocol, Iterable
 
 class OrdersProtocol(Protocol):
-    def byId(self, id) -> Order:
+    def by_id(self, id) -> Order:
         ...
 
-    def getLines(self, id) -> Iterable[OrderLine]:
+    def get_lines(self, id) -> Iterable[OrderLine]:
         ...
 
 OrdersStoreToken = tres.InjectionToken[OrdersProtocol]()
 
 def calculate_total(orders_store: OrdersProtocol, order_id):
-    order = orders_store.byId(order_id)
-    lines = orders_store.getLines(order_id)
+    order = orders_store.by_id(order_id)
+    lines = orders_store.get_lines(order_id)
     return sum(line.price for line in lines) + order.shipping
 
 
@@ -68,10 +68,10 @@ class OrdersStore(OrdersProtocol):
     def __init__(self, url):
         self.url = url
 
-    def byId(self, id):
+    def by_id(self, id):
         return map(Order, requests.get(f'{self.url}/order/{id}').json())
 
-    def getLines(self, id):
+    def get_lines(self, id):
         return map(OrderLine, requests.get(f'{self.url}/order/{id}/lines').json())
 
 tres.container.register(OrdersStoreToken, OrdersStore(URL))
@@ -83,7 +83,7 @@ from application import calculate_total, OrdersStoreToken
 
 def order_view(order_id):
     orders_store = tres.container[OrdersStoreToken]
-    order = orders_store.byId(order_id)
+    order = orders_store.by_id(order_id)
     total = calculate_total(orders_store, order_id)
     return f'{order.id} - {order.date}: {total}'
 ```
